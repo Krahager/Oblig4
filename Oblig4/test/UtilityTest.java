@@ -51,6 +51,36 @@ public class UtilityTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void hexToInt_WhenGivenIllegalCharacters_ShouldThrowIllegalArgumentException(){
-		Utility.hexToInt("k");
+		Utility.hexToInt("h1k");
+	}
+	
+	@Test
+	public void binToInt_WhenGiven1_ShouldReturn1(){
+		assertThat(Utility.binToInt("1"), is(1));
+	}
+	
+	@Test
+	public void binToInt_WhenGiven101_ShouldReturn5(){
+		assertThat(Utility.binToInt("101"), is(5));
+	}
+	
+	@Test
+	public void binToInt_WhenGiven100000000_ShouldReturn256(){
+		assertThat(Utility.binToInt("100000000"), is(256));
+	}
+	
+	@Test
+	public void binToInt_WhenGiven111111111111111111111111_ShouldReturn‭16777215‬(){
+		assertThat(Utility.binToInt("111111111111111111111111"), is(16777215));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void binToInt_WhenGivenMoreThan24Digits_ShouldThrowIllegalArgumentException(){
+		Utility.binToInt("1111111111111111111111111");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void binToInt_WhenGivenIllegalCharacters_ShouldThrowIllegalArgumentException(){
+		Utility.binToInt("910");
 	}
 }
