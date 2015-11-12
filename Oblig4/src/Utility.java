@@ -58,6 +58,9 @@ public class Utility {
 	}
 
 	public static String intToBin(int number) {
+		if(number>16777215)
+			throw new IllegalArgumentException(
+					"Number higher than 24 bits can support");
 		StringBuilder b = new StringBuilder();
 		for(int i = 0; i < 24; i++){
 			b.append(number%2);
