@@ -56,4 +56,9 @@ public class Utility {
 		}
 		return hexNumber;
 	}
+
+	public static Object intToBin(int expectedInt) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

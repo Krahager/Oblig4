@@ -32,4 +32,8 @@ public class UtilityTestWithBinParameters {
 		assertThat(Utility.binToInt(input), is(expectedInt));
 	}
 
+	@Test
+	public void intToBin_WhenGivenIntInput_ShouldReturnCorrespondingBinaryString(){
+		assertThat(Utility.intToBin(expectedInt), is(input));
+	}
 }
