@@ -16,7 +16,7 @@ public class Utility {
 		char[] chars = string.toUpperCase().toCharArray();
 		for (int i = string.length() - 1; i >= 0; i--) {
 			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) {
-				value += (int) (chars[i] - 48) * (Math.pow(16, count++)); // *(count++*16)
+				value += (int) (chars[i] - 48) * (Math.pow(16, count++));
 			}
 			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) {
 				value += (int) (chars[i] - 55) * (Math.pow(16, count++));
@@ -57,7 +57,7 @@ public class Utility {
 		return hexNumber;
 	}
 
-	public static Object intToBin(int number) {
+	public static String intToBin(int number) {
 		StringBuilder b = new StringBuilder();
 		for(int i = 0; i < 24; i++){
 			b.append(number%2);
