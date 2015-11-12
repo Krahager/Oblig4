@@ -32,4 +32,9 @@ public class UtilityTest {
 	public void binToInt_WhenGivenIllegalCharacters_ShouldThrowIllegalArgumentException(){
 		Utility.binToInt("910");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void intToBin_WhenGivenValueOver16777215_ShouldThrowIllegalArgumentException(){
+		Utility.intToBin(167772155);
+	}
 }
