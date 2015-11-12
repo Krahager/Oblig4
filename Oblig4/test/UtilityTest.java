@@ -10,6 +10,11 @@ public class UtilityTest {
 	@Before
 	public void setUp() throws Exception {
 	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void intToHex_WhenGivenNumberLessThan0_ShouldThrowIllegalArgumentException(){
+		Utility.intToHex(-32);
+	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void hexToInt_WhenGivenSevenDigitHex_ShouldThrowIllegalArgumentException(){

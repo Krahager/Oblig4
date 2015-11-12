@@ -11,13 +11,13 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class UtilityTestWithParameters {
+public class UtilityTestWithHexParameters {
 	@Parameters
 	public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                 { "5", 5 }, { "a", 10 }, { "b", 11 }, { "c", 12 }, { "d", 13 }, 
-                 { "e", 14 },{ "f", 15 }, { "10", 16 }, { "a5", 165 },
-                 { "ff", 255 }, { "ff0", 4080 }, {"ffffff", 16777215 }  
+                 { "5", 5 }, { "A", 10 }, { "B", 11 }, { "C", 12 }, { "D", 13 }, 
+                 { "E", 14 },{ "F", 15 }, { "10", 16 }, { "A5", 165 },
+                 { "FF", 255 }, { "FF0", 4080 }, {"FFFFFF", 16777215 }  
            });
     }
 	
@@ -25,12 +25,16 @@ public class UtilityTestWithParameters {
 	public String input;
 	
 	@Parameter(value = 1)
-	public int expectedValue;
+	public int expectedInt;
 	
 	@Test
 	public void hexToInt_WhenGivenHex_ShouldReturnCorrespondingNumber() {
-		assertThat(Utility.hexToInt(input), is(expectedValue));
+		assertThat(Utility.hexToInt(input), is(expectedInt));
 	}
 	
+	@Test
+	public void intToHex_WhenGivenInt_ShouldReturnCorrespondingHex(){
+		assertThat(Utility.intToHex(expectedInt), is(input));
+	}
 	
 }
