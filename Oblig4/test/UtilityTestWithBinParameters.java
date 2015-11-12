@@ -15,9 +15,11 @@ public class UtilityTestWithBinParameters {
 	@Parameters
 	public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                 { "1", 1 }, { "10", 2 }, { "1001", 9 }, { "1100", 12 }, { "110101", 53 }, 
-                 { "0111110", 62 },{ "10100101", 165 },{ "11111111", 255 }, 
-                 { "100000000", 256 }, {"111111111111111111111111", 16777215 }  
+                 { "000000000000000000000001", 1 }, { "000000000000000000000010", 2 },
+                 { "000000000000000000001001", 9 }, { "000000000000000000001100", 12 }, 
+                 { "000000000000000000110101", 53 }, { "000000000000000000111110", 62 },
+                 { "000000000000000010100101", 165 }, { "000000000000000011111111", 255 }, 
+                 { "000000000000000100000000", 256 }, {"111111111111111111111111", 16777215 }  
            });
     }
 	
@@ -33,7 +35,7 @@ public class UtilityTestWithBinParameters {
 	}
 
 	@Test
-	public void intToBin_WhenGivenIntInput_ShouldReturnCorrespondingBinaryString(){
+	public void intToBin_WhenGivenIntInput_ShouldReturnCorresponding24BitString(){
 		assertThat(Utility.intToBin(expectedInt), is(input));
 	}
 }

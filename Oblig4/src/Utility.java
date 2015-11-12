@@ -57,8 +57,12 @@ public class Utility {
 		return hexNumber;
 	}
 
-	public static Object intToBin(int expectedInt) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Object intToBin(int number) {
+		StringBuilder b = new StringBuilder();
+		for(int i = 0; i < 24; i++){
+			b.append(number%2);
+			number=number/2;
+		}
+		return b.reverse().toString();
 	}
 }
