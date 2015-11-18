@@ -69,8 +69,33 @@ public class Utility {
 		return b.reverse().toString();
 	}
 
-	public static Object bitwise(int operation, String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
+	public static String bitwise(int operation, String bin1, String bin2) {
+		if(!(bin1.length() <= 24 && bin2.length() <= 24))
+			throw new IllegalArgumentException();
+		Pattern p = Pattern.compile("[^01]");
+		if(p.matcher(bin1).find() || p.matcher(bin2).find())
+			throw new IllegalArgumentException();
+		switch(operation){
+			case 1:
+				return bitwiseAND(bin1, bin2);
+			case 2:
+				return bitwiseOR(bin1, bin2);
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
+
+	private static String bitwiseOR(String bin1, String bin2) {
+		StringBuilder b = new StringBuilder();
+		for(int i = 0; i < bin1.length(); i++)
+			b.append((bin1.charAt(i) == '1' || bin2.charAt(i) == '1')? 1: 0);
+		return b.toString();
+	}
+
+	private static String bitwiseAND(String bin1, String bin2) {
+		StringBuilder b = new StringBuilder();
+		for(int i = 0; i < bin1.length(); i++)
+			b.append((bin1.charAt(i) == '1' && bin2.charAt(i) == '1')? 1: 0);
+		return b.toString();
 	}
 }

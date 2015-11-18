@@ -42,7 +42,8 @@ public class UtilityTest {
 	
 	@Test
 	public void bitwise_WhenGiven2_ShouldPerformBitwiseOR(){
-		assertThat(Utility.bitwise(2, "100000", "10101"), is("0"));
+		assertThat(Utility.bitwise(2, "110101000100101010101011", "100101001100101010101111"),
+				is("110101001100101010101111"));
 	}
 	
 	@Test
