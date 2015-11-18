@@ -1,5 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 public class UtilityTest {
 	
@@ -36,5 +38,16 @@ public class UtilityTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void intToBin_WhenGivenValueOver16777215_ShouldThrowIllegalArgumentException(){
 		Utility.intToBin(167772155);
+	}
+	
+	@Test
+	public void bitwise_WhenGiven2_ShouldPerformBitwiseOR(){
+		assertThat(Utility.bitwise(2, "100000", "10101"), is("0"));
+	}
+	
+	@Test
+	public void bitwise_WhenGiven1_ShouldPerformBitwiseAND(){
+		assertThat(Utility.bitwise(1, "110101000100101010101011", "100101000100101010101111"),
+				is("100101000100101010101011"));
 	}
 }

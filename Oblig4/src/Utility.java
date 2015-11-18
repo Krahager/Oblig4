@@ -15,10 +15,10 @@ public class Utility {
 		int count = 0;
 		char[] chars = string.toUpperCase().toCharArray();
 		for (int i = string.length() - 1; i >= 0; i--) {
-			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) {
+			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) { //Between 0 and 9
 				value += (int) (chars[i] - 48) * (Math.pow(16, count++));
 			}
-			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) {
+			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) { //Between A and F
 				value += (int) (chars[i] - 55) * (Math.pow(16, count++));
 			}
 		}
@@ -67,5 +67,10 @@ public class Utility {
 			number=number/2;
 		}
 		return b.reverse().toString();
+	}
+
+	public static Object bitwise(int operation, String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
