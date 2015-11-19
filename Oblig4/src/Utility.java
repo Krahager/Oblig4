@@ -99,6 +99,7 @@ public class Utility {
 	}
 	
 	private static void checkLength(String s, int type){
+		
 		String a = (type == BINARY)? "Binary": "Hexadecimal";
 		int length = (type == BINARY)? 24: 6;
 		if (s.length() == 0)
