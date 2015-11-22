@@ -59,13 +59,13 @@ public class UtilityTest {
 	
 	@Test
 	public void bitwise_WhenGiven2_ShouldPerformBitwiseOR(){
-		assertThat(Utility.bitwise(2, "110101000100101010101011", "100101001100101010101111"),
+		assertThat(Utility.bitwise("2", "110101000100101010101011", "100101001100101010101111"),
 				is("110101001100101010101111"));
 	}
 	
 	@Test
 	public void bitwise_WhenGiven1_ShouldPerformBitwiseAND(){
-		assertThat(Utility.bitwise(1, "110101000100101010101011", "100101000100101010101111"),
+		assertThat(Utility.bitwise("1", "110101000100101010101011", "100101000100101010101111"),
 				is("100101000100101010101011"));
 	}
 	
@@ -73,6 +73,6 @@ public class UtilityTest {
 	public void bitwise_WhenGivenStringLongerThan24_ShouldThrowIllegalArgumentException(){
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Binary string too long. Maximum supported length is 24. Length was 47");
-		Utility.bitwise(1, "00000000000000000000000000000000000000000000000", "101010101010101010101010101010");
+		Utility.bitwise("1", "00000000000000000000000000000000000000000000000", "101010101010101010101010101010");
 	}
 }

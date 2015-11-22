@@ -58,10 +58,12 @@ public class Utility {
 		return b.reverse().toString();
 	}
 
-	public static String bitwise(int operation, String bin1, String bin2) {
+	public static String bitwise(String operation, String bin1, String bin2) {
 		checkString(bin1, BINARY);
 		checkString(bin2, BINARY);
-		switch(operation){
+		
+		int opValue = (int)(operation.charAt(0) - 48);
+		switch(opValue){
 			case 1:
 				return bitwiseAND(bin1, bin2);
 			case 2:
