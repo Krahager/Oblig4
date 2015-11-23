@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Reader {
 	BufferedReader readBuffer;
@@ -13,7 +11,6 @@ public class Reader {
 	}
 	
 	public Reader(BufferedReader in) throws IOException{
-		// TODO Auto-generated constructor stub
 			while(in.ready()){
 				String s = in.readLine();
 				String[] sArray = s.split("\\s+");

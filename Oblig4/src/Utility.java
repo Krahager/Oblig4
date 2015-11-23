@@ -6,16 +6,18 @@ public class Utility {
 	
 	public static int hexToInt(String string) {
 		checkString(string, HEX);
+		String numbers = "0123456789ABCDEF";
 		int value = 0;
 		int count = 0;
 		char[] chars = string.toUpperCase().toCharArray();
 		for (int i = string.length() - 1; i >= 0; i--) {
-			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) { //Between 0 and 9
-				value += (int) (chars[i] - 48) * (Math.pow(16, count++));
-			}
-			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) { //Between A and F
-				value += (int) (chars[i] - 55) * (Math.pow(16, count++));
-			}
+			value += numbers.indexOf(chars[i]) * (Math.pow(16, count++));
+//			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) { //Between 0 and 9
+//				value += (int) (chars[i] - 48) * (Math.pow(16, count++));
+//			}
+//			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) { //Between A and F
+//				value += (int) (chars[i] - 55) * (Math.pow(16, count++));
+//			}
 		}
 		return value;
 	}

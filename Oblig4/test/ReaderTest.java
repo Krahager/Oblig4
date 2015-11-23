@@ -3,7 +3,6 @@ import static org.mockito.Mockito.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
