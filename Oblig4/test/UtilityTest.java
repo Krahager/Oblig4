@@ -37,6 +37,13 @@ public class UtilityTest {
 	}
 	
 	@Test
+	public void hexToInt_WhenGivenNull_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("String cannot be null");
+		Utility.hexToInt(null);
+	}
+	
+	@Test
 	public void binToInt_WhenGivenMoreThan24Digits_ShouldThrowIllegalArgumentException(){
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Binary string too long. Maximum supported length is 24. Length was 25");
@@ -74,5 +81,39 @@ public class UtilityTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Binary string too long. Maximum supported length is 24. Length was 47");
 		Utility.bitwise("1", "00000000000000000000000000000000000000000000000", "101010101010101010101010101010");
+	}
+	
+	@Test
+	public void bitwise_WhenGivenNullAsOperation_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Operation cannot be null");
+		Utility.bitwise(null, "100101000100101010101011", "100101000100101010101011");
+	}
+	
+	@Test
+	public void bitwise_WhenGivenNullAsSecondArgument_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("String cannot be null");
+		Utility.bitwise("1", null, "100101000100101010101011");
+	}
+	
+	@Test
+	public void bitwise_WhenGivenNullAsThirdArgument_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("String cannot be null");
+		Utility.bitwise("1", "100101000100101010101011", null);
+	}
+	
+	@Test
+	public void bitwise_WhenGivenIllegalOperator_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("");
+		Utility.bitwise("3", "100101000100101010101011", "100101000100101010101011");
+	}
+	
+	@Test
+	public void utility_WhenRunningDefaultConstructor_ShouldInstantiateProperly(){
+		@SuppressWarnings("unused")
+		Utility u = new Utility();
 	}
 }

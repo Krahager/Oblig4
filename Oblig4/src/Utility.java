@@ -62,6 +62,9 @@ public class Utility {
 		checkString(bin1, BINARY);
 		checkString(bin2, BINARY);
 		
+		if(operation == null)
+			throw new IllegalArgumentException("Operation cannot be null");
+		
 		int opValue = (int)(operation.charAt(0) - 48);
 		switch(opValue){
 			case 1:
@@ -69,7 +72,7 @@ public class Utility {
 			case 2:
 				return bitwiseOR(bin1, bin2);
 			default:
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid Operation");
 		}
 	}
 
