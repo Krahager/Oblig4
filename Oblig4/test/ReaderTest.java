@@ -16,7 +16,7 @@ public class ReaderTest {
 	}
 
 	@Test
-	public void read_whenGiven() {
+	public void read_whenGivenLine_ShouldReadProperly() {
 		Reader read = null;
 		try {
 			when(in.readLine()).thenReturn("ab674 2 110000000000000000000000 "

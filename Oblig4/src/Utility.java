@@ -3,21 +3,21 @@ import java.util.regex.Pattern;
 public class Utility {
 	private static final int BINARY = 0;
 	private static final int HEX = 1;
+	public static final String HEX_CHARS = "0123456789ABCDEF";
+	public static final String BIN_CHARS = "01";
+	public static final int BIN_MAXSIZE = 16777215;
+	public static final int HEX_MAXSIZE = 16777215;
+	public static final int BIN_MAXLENGTH = 24;
+	public static final int HEX_MAXLENGTH = 6;
+	private static final int ASCII_ZERO = 48;
 	
 	public static int hexToInt(String string) {
 		checkString(string, HEX);
-		String numbers = "0123456789ABCDEF";
 		int value = 0;
 		int count = 0;
 		char[] chars = string.toUpperCase().toCharArray();
 		for (int i = string.length() - 1; i >= 0; i--) {
-			value += numbers.indexOf(chars[i]) * (Math.pow(16, count++));
-//			if ((int) chars[i] <= 57 && (int) chars[i] >= 48) { //Between 0 and 9
-//				value += (int) (chars[i] - 48) * (Math.pow(16, count++));
-//			}
-//			else if ((int) chars[i] <= 70 && (int) chars[i] >= 65) { //Between A and F
-//				value += (int) (chars[i] - 55) * (Math.pow(16, count++));
-//			}
+			value += HEX_CHARS.indexOf(chars[i]) * (Math.pow(16, count++));
 		}
 		return value;
 	}
@@ -28,7 +28,7 @@ public class Utility {
 		int count = 0;
 		char[] chars = string.toCharArray();
 		for (int i = chars.length - 1; i >= 0; i--) {
-			value += (int) (chars[i] - 48) * Math.pow(2, count++);
+			value += (BIN_CHARS.indexOf(chars[i]) * Math.pow(2, count++));
 		}
 		return value;
 	}
@@ -36,24 +36,25 @@ public class Utility {
 	public static String intToHex(int number) {
 		if (number < 0)
 			throw new IllegalArgumentException("The number can't be less than 0");
-		String digits = "0123456789ABCDEF";
+		if (number > HEX_MAXSIZE)
+			throw new IllegalArgumentException("Maximum supported");
 		if (number == 0)
 			return "0";
 		String hexNumber = "";
 		while (number > 0){
 			int digit = number % 16;
-			hexNumber = digits.charAt(digit) + hexNumber;
+			hexNumber = HEX_CHARS.charAt(digit) + hexNumber;
 			number = number/16;
 		}
 		return hexNumber;
 	}
 
 	public static String intToBin(int number) {
-		if(number>16777215)
+		if(number>BIN_MAXSIZE)
 			throw new IllegalArgumentException(
 					"Number higher than 24 bits can support");
 		StringBuilder b = new StringBuilder();
-		for(int i = 0; i < 24; i++){
+		for(int i = 0; i < BIN_MAXLENGTH; i++){
 			b.append(number%2);
 			number=number/2;
 		}
@@ -67,7 +68,7 @@ public class Utility {
 		if(operation == null)
 			throw new IllegalArgumentException("Operation cannot be null");
 		
-		int opValue = (int)(operation.charAt(0) - 48);
+		int opValue = (int)(operation.charAt(0) - ASCII_ZERO);
 		switch(opValue){
 			case 1:
 				return bitwiseAND(bin1, bin2);
@@ -80,14 +81,14 @@ public class Utility {
 
 	private static String bitwiseOR(String bin1, String bin2) {
 		StringBuilder b = new StringBuilder();
-		for(int i = 0; i < bin1.length(); i++)
+		for(int i = 0; i < bin1.length() && i < bin2.length(); i++)
 			b.append((bin1.charAt(i) == '1' || bin2.charAt(i) == '1')? 1: 0);
 		return b.toString();
 	}
 
 	private static String bitwiseAND(String bin1, String bin2) {
 		StringBuilder b = new StringBuilder();
-		for(int i = 0; i < bin1.length(); i++)
+		for(int i = 0; i < bin1.length() && i < bin2.length() ; i++)
 			b.append((bin1.charAt(i) == '1' && bin2.charAt(i) == '1')? 1: 0);
 		return b.toString();
 	}
@@ -107,7 +108,7 @@ public class Utility {
 	
 	private static void checkLength(String s, int type){
 		String a = (type == BINARY)? "Binary": "Hexadecimal";
-		int length = (type == BINARY)? 24: 6;
+		int length = (type == BINARY)? BIN_MAXLENGTH: HEX_MAXLENGTH;
 		if (s.length() == 0)
 			throw new IllegalArgumentException("Length of string cannot be 0");
 		if (s.length() > length)
