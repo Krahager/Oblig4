@@ -17,7 +17,8 @@ public class UtilityTestWithHexParameters {
         return Arrays.asList(new Object[][] {
                  { "5", 5 }, { "A", 10 }, { "B", 11 }, { "C", 12 }, { "D", 13 }, 
                  { "E", 14 },{ "F", 15 }, { "10", 16 }, { "A5", 165 },
-                 { "FF", 255 }, { "FF0", 4080 }, {"FFFFFF", 16777215 }  
+                 { "FF", 255 }, { "FF0", 4080 }, {"FFFFFF", 16777215 },
+                 { "0", 0}
            });
     }
 	

@@ -37,7 +37,8 @@ public class Utility {
 		if (number < 0)
 			throw new IllegalArgumentException("The number can't be less than 0");
 		if (number > HEX_MAXSIZE)
-			throw new IllegalArgumentException("Maximum supported");
+			throw new IllegalArgumentException("Number greater than highest supported hex value."
+					+ " Highest permitted value is " + HEX_MAXSIZE +", Argument was " + number);
 		if (number == 0)
 			return "0";
 		String hexNumber = "";

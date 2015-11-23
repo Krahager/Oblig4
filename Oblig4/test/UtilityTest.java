@@ -23,6 +23,14 @@ public class UtilityTest {
 	}
 	
 	@Test
+	public void intToHex_WhenGivenNumberGreaterThanMax_ShouldThrowIllegalArgumentException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Number greater than highest supported hex value."
+					+ " Highest permitted value is " + 16777215 +", Argument was " + 16777216);
+		Utility.intToHex(Utility.HEX_MAXSIZE + 1);
+	}
+	
+	@Test
 	public void hexToInt_WhenGivenSevenDigitHex_ShouldThrowIllegalArgumentException(){
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Hexadecimal string too long. Maximum supported length is 6. Length was 7");
@@ -55,6 +63,13 @@ public class UtilityTest {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("String contains illegal characters. Supported pattern is [^01]");
 		Utility.binToInt("910");
+	}
+	
+	@Test
+	public void binToInt_WhenGivenZeroLengthString_ShouldThrowIllegalArgumetException(){
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Length of string cannot be 0");
+		Utility.binToInt("");
 	}
 	
 	@Test
