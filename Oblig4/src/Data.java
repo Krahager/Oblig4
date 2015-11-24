@@ -38,8 +38,6 @@ public class Data {
 					result = "000000000000000000000000";
 					failures.add(new Entry(sArray[0], sArray[1], sArray[2], sArray[3], result, 0));
 				}
-				else
-					System.err.println(e.getStackTrace());
 			}
 		}
 	}
@@ -54,7 +52,7 @@ public class Data {
 		private String bin1;
 		private String bin2;
 		private String resultString;
-		private int resultInt;
+		private Integer resultInt;
 
 		public Entry(String hexString, String operation, String bin1, String bin2, String resultString, int resultInt) {
 			super();
@@ -86,7 +84,7 @@ public class Data {
 			return resultString;
 		}
 
-		public int getResultInt() {
+		public Integer getResultInteger() {
 			return resultInt;
 		}
 
