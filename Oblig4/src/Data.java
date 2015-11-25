@@ -7,13 +7,13 @@ public class Data {
 	private HashMap<String, Entry> values;
 	private Reader reader;
 	private List<Entry> duplicateValues;
-	private List<Entry> failures;
+	private List<String> failures;
 
 	public Data(Reader in) throws IOException {
 		reader = in;
-		values = new HashMap<String, Entry>();
-		duplicateValues = new ArrayList<Entry>();
-		failures = new ArrayList<Entry>();
+		values = new HashMap<>();
+		duplicateValues = new ArrayList<>();
+		failures = new ArrayList<>();
 	}
 
 	public void read() {
@@ -22,7 +22,7 @@ public class Data {
 		while (true) {
 			String s = reader.readLine();
 			if (s == null)
-				return;
+				return; //End of file
 			sArray = s.split("\\s+");
 			result = null;
 			try {
@@ -34,10 +34,7 @@ public class Data {
 					values.put(sArray[0], new Entry(sArray[0], sArray[1], sArray[2], sArray[3], result, intResult));
 				}
 			} catch (Exception e) {
-				if (e.getMessage().equals("Invalid Operation")) {
-					result = "000000000000000000000000";
-					failures.add(new Entry(sArray[0], sArray[1], sArray[2], sArray[3], result, 0));
-				}
+				failures.add(s);
 			}
 		}
 	}
@@ -94,7 +91,7 @@ public class Data {
 		}
 	}
 
-	public List<Entry> getFailures() {
+	public List<String> getFailures() {
 		return failures;
 	}
 

@@ -32,7 +32,7 @@ public class DataTest {
 				+ "001111111111111111111111").thenReturn(null);
 		data.read();
 		assertThat(data.getFailures().get(0).toString(), is("ab674 3 110000000000000000000000 "
-				+ "001111111111111111111111 000000000000000000000000 " + 0));
+				+ "001111111111111111111111"));
 	}
 
 	@Test
@@ -43,6 +43,14 @@ public class DataTest {
 		data.read();
 		assertThat(data.getDuplicates().get(0).toString(), is("ab674 2 110000000000000000000000 "
 				+ "001111111111111111111111 111111111111111111111111 " + Utility.BIN_MAXSIZE));
+	}
+	
+	@Test
+	public void read_whenGivenInvalidNumberOfArguments_ShouldStoreStringInFailures(){
+		when(mockReader.readLine()).thenReturn("ab674 2 110000000000000000000000 ").thenReturn(null);
+		
+		data.read();
+		assertThat(data.getFailures().get(0), is("ab674 2 110000000000000000000000 "));
 	}
 	
 	@Test
